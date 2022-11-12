@@ -1,0 +1,13 @@
+server:
+  port: ${PORT:8888}
+
+spring:
+  application:
+    name: ConfigServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/AlejaMarin/EBEI-Parcial
+          force-pull: true
+          search-paths: ConfigData
