@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "0575a638-0781-4d4a-b1d9-45bf51c7bebf",
+		"name": "EBEI - Parcial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20454160"
+	},
+	"item": [
+		{
+			"name": "POST - Movie (Gateway)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"It\",\r\n    \"genre\": \"Terror\",\r\n    \"urlStream\": \"www.netflix.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movies/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Movie (Puerto Dinámico)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Halloween\",\r\n    \"genre\": \"Terror\",\r\n    \"urlStream\": \"www.netflix.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4645/api/v1/movies/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4645",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Movies (Gateway)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movies/terror",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"terror"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Movies (Puerto Dinámico)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4645/api/v1/movies/terror",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4645",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"terror"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Catalog (Gateway)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/catalog/terror",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"catalog",
+						"terror"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Catalog (Puerto Dinámico)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4654/api/v1/catalog/terror",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4654",
+					"path": [
+						"api",
+						"v1",
+						"catalog",
+						"terror"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
