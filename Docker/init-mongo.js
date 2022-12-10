@@ -9,4 +9,17 @@ db.createUser(
             }
         ]
     }
-)
+);
+
+db.createUser(
+    {
+        user: "usr-catalog",
+        pwd: "pwd-catalog",
+        roles: [
+            {
+                role: "readWrite",
+                db: "catalog-dev"
+            }
+        ]
+    }
+);
