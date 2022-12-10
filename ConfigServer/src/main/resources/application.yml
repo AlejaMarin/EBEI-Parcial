@@ -8,6 +8,5 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/AlejaMarin/EBEI-Parcial
+          uri: https://github.com/AlejaMarin/EF-Config
           force-pull: true
-          search-paths: ConfigData
