@@ -38,6 +38,6 @@ public class SerieService {
     }
 
     public List<Serie> findByGenre(String genre) {
-        return serieRepository.findByGenre(genre);
+        return serieRepository.findByGenreIgnoreCase(genre);
     }
 }

@@ -38,7 +38,7 @@ public class SerieController {
         return ResponseEntity.ok(serieService.getAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<Serie> getById(@PathVariable String id) {
         return ResponseEntity.ok(serieService.getById(id));
