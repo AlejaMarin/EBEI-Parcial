@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: api-series
+  cloud:
+    config:
+      uri: http://localhost:8888
