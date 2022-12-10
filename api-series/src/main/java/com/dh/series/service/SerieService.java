@@ -5,7 +5,6 @@ import com.dh.series.repository.SerieRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class SerieService {
