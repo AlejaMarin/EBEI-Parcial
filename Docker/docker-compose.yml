@@ -20,9 +20,9 @@ services:
     image: mongo
     restart: always
     environment:
-#      MONGO_INITDB_DATABASE: 'series-dev'
-#      MONGO_INITDB_ROOT_USERNAME: 'usr-series'
-#      MONGO_INITDB_ROOT_PASSWORD: 'pwd-series'
+      #      MONGO_INITDB_DATABASE: 'series-dev'
+      #      MONGO_INITDB_ROOT_USERNAME: 'usr-series'
+      #      MONGO_INITDB_ROOT_PASSWORD: 'pwd-series'
       MONGO_INITDB_ROOT_DATABASE: root-db
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
@@ -43,6 +43,6 @@ services:
       - 9411
     depends_on:
       - storage-contenedor
-    storage-contenedor:
-      image: busybox:1.31.0
-      container_name: storage-contenedor
+  storage-contenedor:
+    image: busybox:1.31.0
+    container_name: storage-contenedor
