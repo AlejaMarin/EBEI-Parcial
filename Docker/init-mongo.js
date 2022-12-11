@@ -1,3 +1,4 @@
+db = db.getSiblingDB('series-dev');
 db.createUser(
     {
         user: "usr-series",
@@ -11,6 +12,7 @@ db.createUser(
     }
 );
 
+db = db.getSiblingDB('catalog-dev');
 db.createUser(
     {
         user: "usr-catalog",
