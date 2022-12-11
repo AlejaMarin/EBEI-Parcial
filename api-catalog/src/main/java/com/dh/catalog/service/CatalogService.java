@@ -36,8 +36,9 @@ public class CatalogService {
         return catalogResponse;
     }
 
-    public void getMoviesAndSeriesByGenreFallback(String genre, Throwable t) throws Exception {
+    public CatalogResponse getMoviesAndSeriesByGenreFallback(String genre, Throwable t) throws Exception {
         System.out.println("No se pudo realizar la busqueda por genero. Por favor, intente mas tarde.");
+        return null;
     }
 
     @Getter
