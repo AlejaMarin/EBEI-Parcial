@@ -25,7 +25,6 @@ public class SerieService {
         BeanUtils.copyProperties(serie, newSerieData);
         if (nuevaSerie != null) {
             newSerieProducer.sendMessage(newSerieData);
-            System.out.println(newSerieData.getId());
         }
     }
 

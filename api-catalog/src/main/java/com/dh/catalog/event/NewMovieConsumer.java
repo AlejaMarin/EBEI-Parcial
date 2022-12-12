@@ -26,15 +26,11 @@ public class NewMovieConsumer {
     }
 
     @RabbitListener(queues = RabbitMQConfig.QUEUE_NEW_MOVIE)
-    public void execute(NewMovieConsumer.Data data) {
+    public void execute(NewMovieConsumer.NewMovieDto data) {
         MovieEntity nuevaPelicula = new MovieEntity();
-        //BeanUtils.copyProperties(data.getMovie(), nuevaPelicula);
-        nuevaPelicula.setId(data.getMovie().getId());
-        nuevaPelicula.setName(data.getMovie().getName());
-        nuevaPelicula.setGenre(data.getMovie().getGenre());
-        nuevaPelicula.setUrlStream(data.getMovie().getUrlStream());
+        BeanUtils.copyProperties(data, nuevaPelicula);
         //movieRepository.deleteById(data.getMovie().getId());
-        log.info("Received message...", nuevaPelicula.getId());
+        log.info("Received message... Adding new movie: " + nuevaPelicula);
         movieRepository.save(nuevaPelicula);
     }
 
@@ -42,19 +38,10 @@ public class NewMovieConsumer {
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Data implements Serializable {
-
-        private Data.NewMovieDto movie = new Data.NewMovieDto();
-
-        @Getter
-        @Setter
-        @NoArgsConstructor
-        @AllArgsConstructor
-        public static class NewMovieDto {
-            private String id;
-            private String name;
-            private String genre;
-            private String urlStream;
-        }
+    public static class NewMovieDto implements Serializable{
+        private String id;
+        private String name;
+        private String genre;
+        private String urlStream;
     }
 }

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +27,14 @@ public class NewSerieProducer {
     public void sendMessage(NewSerieData data) {
         log.info("Sending message... Creating new serie...");
         rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.ROUTING_KEY_NEW_SERIE, data);
+        log.info("New Serie: " + data);
     }
 
     @Getter
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class NewSerieData {
+    public static class NewSerieData implements Serializable {
         private String id;
         private String name;
         private String genre;
@@ -42,23 +44,52 @@ public class NewSerieProducer {
         @Setter
         @NoArgsConstructor
         @AllArgsConstructor
-        static class SeasonDto {
+        public static class SeasonDto implements Serializable {
 
             private Long id;
             private Integer seasonNumber;
             private List<SeasonDto.ChapterDto> chapters = new ArrayList<>();
 
+            @Override
+            public String toString() {
+                return "SeasonDto{" +
+                        "id=" + id +
+                        ", seasonNumber=" + seasonNumber +
+                        ", chapters=" + chapters +
+                        '}';
+            }
+
             @Getter
             @Setter
             @NoArgsConstructor
             @AllArgsConstructor
-            class ChapterDto {
+            public static class ChapterDto implements Serializable {
 
                 private Long id;
                 private String name;
                 private Integer number;
                 private String urlStream;
+
+                @Override
+                public String toString() {
+                    return "ChapterDto{" +
+                            "id=" + id +
+                            ", name='" + name + '\'' +
+                            ", number=" + number +
+                            ", urlStream='" + urlStream + '\'' +
+                            '}';
+                }
             }
+        }
+
+        @Override
+        public String toString() {
+            return "NewSerieData{" +
+                    "id='" + id + '\'' +
+                    ", name='" + name + '\'' +
+                    ", genre='" + genre + '\'' +
+                    ", seasons=" + seasons +
+                    '}';
         }
     }
 }

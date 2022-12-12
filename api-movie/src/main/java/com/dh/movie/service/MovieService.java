@@ -27,11 +27,10 @@ public class MovieService {
     public Movie save(Movie movie) {
         Movie nuevaPelicula = movieRepository.save(movie);
         if (nuevaPelicula != null) {
-            newMovieProducer.sendMessage(new NewMovieProducer.NewMovieData(movie.getId(),
+            newMovieProducer.sendMessage(new NewMovieProducer.NewMovieData(movie.getId().toString(),
                     movie.getName(),
                     movie.getGenre(),
                     movie.getUrlStream()));
-            System.out.println(movie.getId());
         }
         return nuevaPelicula;
     }

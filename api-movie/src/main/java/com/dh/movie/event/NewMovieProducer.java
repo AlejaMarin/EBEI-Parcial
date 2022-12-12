@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
 public class NewMovieProducer {
 
@@ -23,19 +25,28 @@ public class NewMovieProducer {
     public void sendMessage(NewMovieData data) {
         log.info("Sending message... Creating new movie...");
         rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, RabbitMQConfig.ROUTING_KEY_NEW_MOVIE, data);
+        log.info("New Movie: " + data);
     }
 
     @Getter
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class NewMovieData {
-        private Long id;
+    public static class NewMovieData implements Serializable {
 
+        private String id;
         private String name;
-
         private String genre;
-
         private String urlStream;
+
+        @Override
+        public String toString() {
+            return "NewMovieData{" +
+                    "id='" + id + '\'' +
+                    ", name='" + name + '\'' +
+                    ", genre='" + genre + '\'' +
+                    ", urlStream='" + urlStream + '\'' +
+                    '}';
+        }
     }
 }

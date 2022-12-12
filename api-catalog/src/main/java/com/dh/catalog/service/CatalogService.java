@@ -26,6 +26,8 @@ public class CatalogService {
 
     @CircuitBreaker(name = "movie-series", fallbackMethod = "getMoviesAndSeriesByGenreFallback")
     @Retry(name = "movie-series")
+    /*Esquema de Resiliencia: Ya que filtrar por genero en Catalog depende de Movies y Series, con la anotación de
+    Circuit Breaker, especifico que en caso de que alguno de los Feign falle, acuda el metodo de fallback.*/
     public CatalogResponse getMoviesAndSeriesByGenre(String genre) throws Exception {
         List<MovieServiceClient.MovieDto> peliculas = movieServiceClient.getMovieByGenre(genre);
         List<SeriesServiceClient.SerieDto> series = seriesServiceClient.getSerieByGenre(genre);
@@ -36,6 +38,8 @@ public class CatalogService {
         return catalogResponse;
     }
 
+    /*El metodo fallback debe retornar el mismo tipo de objeto que el metodo "principal", en este caso,
+    Solo quiero mostrar un mensaje en consola, y retorno un null.*/
     public CatalogResponse getMoviesAndSeriesByGenreFallback(String genre, Throwable t) throws Exception {
         System.out.println("No se pudo realizar la busqueda por genero. Por favor, intente mas tarde.");
         return null;

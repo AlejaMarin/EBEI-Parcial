@@ -28,11 +28,11 @@ public class NewSerieConsumer {
     }
 
     @RabbitListener(queues = RabbitMQConfig.QUEUE_NEW_SERIE)
-    public void execute(NewSerieConsumer.Data data) {
+    public void execute(NewSerieConsumer.SerieDto data) {
         SerieEntity nuevaSerie = new SerieEntity();
-        BeanUtils.copyProperties(data.getSerie(), nuevaSerie);
+        BeanUtils.copyProperties(data, nuevaSerie);
         //serieRepository.deleteById(data.getSerie().getId());
-        log.info("Received message...", data.getSerie().getId());
+        log.info("Received message... Adding new serie: " + nuevaSerie);
         serieRepository.save(nuevaSerie);
     }
 
@@ -40,43 +40,34 @@ public class NewSerieConsumer {
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Data implements Serializable {
+    public static class SerieDto implements Serializable {
 
-        private Data.SerieDto serie = new Data.SerieDto();
-
-        @Getter
-        @Setter
-        @NoArgsConstructor
-        @AllArgsConstructor
-        class SerieDto {
-
-            private String id;
-            private String name;
-            private String genre;
-            private List<Data.SeasonDto> seasons = new ArrayList<>();
-        }
+        private String id;
+        private String name;
+        private String genre;
+        private List<SerieDto.SeasonDto> seasons = new ArrayList<>();
 
         @Getter
         @Setter
         @NoArgsConstructor
         @AllArgsConstructor
-        class SeasonDto {
+        public static class SeasonDto implements Serializable {
 
             private Long id;
             private Integer seasonNumber;
-            private List<Data.ChapterDto> chapters = new ArrayList<>();
-        }
+            private List<SeasonDto.ChapterDto> chapters = new ArrayList<>();
 
-        @Getter
-        @Setter
-        @NoArgsConstructor
-        @AllArgsConstructor
-        class ChapterDto {
+            @Getter
+            @Setter
+            @NoArgsConstructor
+            @AllArgsConstructor
+            public static class ChapterDto implements Serializable {
 
-            private Long id;
-            private String name;
-            private Integer number;
-            private String urlStream;
+                private Long id;
+                private String name;
+                private Integer number;
+                private String urlStream;
+            }
         }
     }
 }
