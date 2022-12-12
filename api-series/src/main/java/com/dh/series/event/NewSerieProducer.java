@@ -10,6 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class NewSerieProducer {
 
@@ -30,7 +33,32 @@ public class NewSerieProducer {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class NewSerieData {
-        private String serieId;
-        private String operationId;
+        private String id;
+        private String name;
+        private String genre;
+        private List<NewSerieData.SeasonDto> seasons = new ArrayList<>();
+
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        static class SeasonDto {
+
+            private Long id;
+            private Integer seasonNumber;
+            private List<SeasonDto.ChapterDto> chapters = new ArrayList<>();
+
+            @Getter
+            @Setter
+            @NoArgsConstructor
+            @AllArgsConstructor
+            class ChapterDto {
+
+                private Long id;
+                private String name;
+                private Integer number;
+                private String urlStream;
+            }
+        }
     }
 }

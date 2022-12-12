@@ -3,10 +3,10 @@ package com.dh.series.service;
 import com.dh.series.event.NewSerieProducer;
 import com.dh.series.model.Serie;
 import com.dh.series.repository.SerieRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class SerieService {
@@ -20,11 +20,12 @@ public class SerieService {
     }
 
     public void save(Serie serie) {
-        String operationId = UUID.randomUUID().toString();
         Serie nuevaSerie = serieRepository.save(serie);
+        NewSerieProducer.NewSerieData newSerieData = new NewSerieProducer.NewSerieData();
+        BeanUtils.copyProperties(serie, newSerieData);
         if (nuevaSerie != null) {
-            newSerieProducer.sendMessage(new NewSerieProducer.NewSerieData(serie.getId(), operationId));
-            System.out.println(operationId);
+            newSerieProducer.sendMessage(newSerieData);
+            System.out.println(newSerieData.getId());
         }
     }
 

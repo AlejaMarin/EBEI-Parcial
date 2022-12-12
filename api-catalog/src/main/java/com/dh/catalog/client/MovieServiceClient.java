@@ -22,7 +22,7 @@ public interface MovieServiceClient {
 	@NoArgsConstructor
 	@AllArgsConstructor
 	class MovieDto{
-		private Long id;
+		private String id;
 
 		private String name;
 

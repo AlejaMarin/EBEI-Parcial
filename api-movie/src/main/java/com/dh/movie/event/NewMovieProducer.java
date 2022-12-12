@@ -30,7 +30,12 @@ public class NewMovieProducer {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class NewMovieData {
-        private Long movieId;
-        private String operationId;
+        private Long id;
+
+        private String name;
+
+        private String genre;
+
+        private String urlStream;
     }
 }

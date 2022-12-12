@@ -7,7 +7,6 @@ import com.dh.movie.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class MovieService {
@@ -26,11 +25,13 @@ public class MovieService {
     }
 
     public Movie save(Movie movie) {
-        String operationId = UUID.randomUUID().toString();
         Movie nuevaPelicula = movieRepository.save(movie);
         if (nuevaPelicula != null) {
-            newMovieProducer.sendMessage(new NewMovieProducer.NewMovieData(movie.getId(), operationId));
-            System.out.println(operationId);
+            newMovieProducer.sendMessage(new NewMovieProducer.NewMovieData(movie.getId(),
+                    movie.getName(),
+                    movie.getGenre(),
+                    movie.getUrlStream()));
+            System.out.println(movie.getId());
         }
         return nuevaPelicula;
     }

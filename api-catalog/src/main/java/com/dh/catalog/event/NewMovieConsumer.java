@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class NewMovieConsumer {
 
+    private static final Logger log = LoggerFactory.getLogger(NewMovieConsumer.class);
     private final MovieRepository movieRepository;
 
     public NewMovieConsumer(MovieRepository movieRepository) {
@@ -25,7 +28,8 @@ public class NewMovieConsumer {
     public void execute(NewMovieConsumer.Data data) {
         MovieEntity nuevaPelicula = new MovieEntity();
         BeanUtils.copyProperties(data.getMovie(), nuevaPelicula);
-        movieRepository.deleteById(data.getMovie().getId());
+        //movieRepository.deleteById(data.getMovie().getId());
+        log.info("Received message as a generic AMQP 'Message' wrapper: {}", data.getMovie().getId());
         movieRepository.save(nuevaPelicula);
     }
 
