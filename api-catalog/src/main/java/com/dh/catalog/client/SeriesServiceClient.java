@@ -26,29 +26,29 @@ public interface SeriesServiceClient {
         private String id;
         private String name;
         private String genre;
-        private List<SeasonDto> seasons = new ArrayList<>();
-    }
+        private List<SerieDto.SeasonDto> seasons = new ArrayList<>();
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    class SeasonDto {
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        class SeasonDto {
 
-        private Long id;
-        private Integer seasonNumber;
-        private List<ChapterDto> chapters = new ArrayList<>();
-    }
+            private Long id;
+            private Integer seasonNumber;
+            private List<SeasonDto.ChapterDto> chapters = new ArrayList<>();
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    class ChapterDto {
+            @Getter
+            @Setter
+            @NoArgsConstructor
+            @AllArgsConstructor
+            class ChapterDto {
 
-        private Long id;
-        private String name;
-        private Integer number;
-        private String urlStream;
+                private Long id;
+                private String name;
+                private Integer number;
+                private String urlStream;
+            }
+        }
     }
 }

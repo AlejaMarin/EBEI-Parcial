@@ -20,4 +20,10 @@ public class CatalogController {
     ResponseEntity<CatalogService.CatalogResponse> getGenre(@PathVariable String genre) throws Exception {
         return ResponseEntity.ok(catalogService.getMoviesAndSeriesByGenre(genre));
     }
+
+    @GetMapping("/offline/{genre}")
+    @ResponseStatus(code = HttpStatus.OK)
+    ResponseEntity<CatalogService.CatalogResponseOffline> getGenreOffline(@PathVariable String genre) {
+        return ResponseEntity.ok(catalogService.getCatalogOffline(genre));
+    }
 }
