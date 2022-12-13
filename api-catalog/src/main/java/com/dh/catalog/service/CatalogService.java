@@ -63,6 +63,7 @@ public class CatalogService {
 
         List<MovieEntity> peliculas = movieRepository.findByGenreIgnoreCase(genre);
         List<SerieEntity> series = serieRepository.findByGenreIgnoreCase(genre);
+        /*Creo mi propia clase response, para evitar conflicto de mapeo entre clases.*/
         CatalogResponseOffline catalogResponseOffline = new CatalogResponseOffline(peliculas, series);
         return catalogResponseOffline;
     }

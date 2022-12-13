@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"It\",\r\n    \"genre\": \"Terror\",\r\n    \"urlStream\": \"www.netflix.com\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Pelicula 5\",\r\n    \"genre\": \"Terror\",\r\n    \"urlStream\": \"www.netflix.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -150,6 +150,133 @@
 						"api",
 						"v1",
 						"catalog",
+						"terror"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Serie (Gateway)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Serie 5\",\r\n    \"genre\": \"Terror\",\r\n    \"seasons\": [\r\n        {\r\n            \"id\": null,\r\n            \"seasonNumber\": 1,\r\n            \"chapters\": [\r\n                {\r\n                    \"id\": null,\r\n                    \"name\": \"Capitulo 1\",\r\n                    \"number\": 1,\r\n                    \"urlStream\": \"www.netflix.com\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/series",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"series"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Serie (Puerto Dinámico)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Serie 5\",\r\n    \"genre\": \"Terror\",\r\n    \"seasons\": [\r\n        {\r\n            \"id\": null,\r\n            \"seasonNumber\": 1,\r\n            \"chapters\": [\r\n                {\r\n                    \"id\": null,\r\n                    \"name\": \"Capitulo 1\",\r\n                    \"number\": 1,\r\n                    \"urlStream\": \"www.netflix.com\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1761/api/v1/series",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1761",
+					"path": [
+						"api",
+						"v1",
+						"series"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Series (Gateway)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/series/terror",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"series",
+						"terror"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Series (Puerto Dinámico)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1761/api/v1/series/terror",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1761",
+					"path": [
+						"api",
+						"v1",
+						"series",
+						"terror"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Catalog Offline",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/catalog/offline/terror",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"catalog",
+						"offline",
 						"terror"
 					]
 				}
